@@ -45,7 +45,6 @@ export class XmlrpcService {
       doc.firstChild!.appendChild(paramsNode)
     }
     const ret = this.serialize(doc)
-    console.log(ret)
     return ret.replace(/[\s\xa0]+$/, '')
   }
 
