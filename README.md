@@ -40,10 +40,10 @@ In order to pass parameters, you have to wrap them in an array:
 let xmlrpcCall = this.xmlrpc.callMethod(
   'http://localhost:8080/xmlrpc/endpoint',
   'method-name',
-  ['string-param-1', 1, {obj-param-3: {val1: 1, val2: 'x'}}]
+  ['string-param-1', 1, {'obj-param-3': {val1: 1, val2: 'x'}}]
 )
 ```
-Response from the server is an `Observable` and can be parsed to a JS object with `parseResponse` method:
+Response from the server is an `Observable` and can be parsed to a JS object with the `parseResponse` method:
 ``` typescript
 xmlrpcCall.subscribe(data => console.log(this.xmlrpc.parseResponse(data)))
 ```
