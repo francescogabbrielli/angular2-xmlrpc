@@ -16,33 +16,34 @@ How to use it ?
 ---------------
 
 First of all, add in you application a dependency in your module:
+``` typescript
+import { XmlrpcModule } from 'angular2-xmlrpc'
 
-    import { XmlrpcModule } from 'angular2-xmlrpc'
-
-    @NgModule({
-      ...
-      imports: [
-        ...
-        XmlrpcModule
-      ],
-      ...
-    })
-
+@NgModule({
+  ...
+  imports: [
+    ...
+    XmlrpcModule
+  ],
+  ...
+})
+```
 You can use it in your application as any other service, and inject it in the constructor as usual.
+``` typescript
+import { XmlrpcService } from 'angular2-xmlrpc'
 
-    import { XmlrpcService } from 'angular2-xmlrpc'
-
-    constructor(..., private xmlrpc:XmlrpcService, ...) {
-    }
-
+constructor(..., private xmlrpc:XmlrpcService, ...) {
+}
+```
 In order to pass parameters, you have to wrap them in an array:
-
-    let xmlrpcCall = this.xmlrpc.callMethod(
-      'http://localhost:8080/xmlrpc/endpoint',
-      'method-name',
-      ['string-param-1', 1, {obj-param-3: {val1: 1, val2: 'x'}}]
-    )
-
+``` typescript
+let xmlrpcCall = this.xmlrpc.callMethod(
+  'http://localhost:8080/xmlrpc/endpoint',
+  'method-name',
+  ['string-param-1', 1, {obj-param-3: {val1: 1, val2: 'x'}}]
+)
+```
 Response from the server is an `Observable` and can be parsed to a JS object with `parseResponse` method:
-
-    xmlrpcCall.subscribe(data => console.log(this.xmlrpc.parseResponse(data)))
+``` typescript
+xmlrpcCall.subscribe(data => console.log(this.xmlrpc.parseResponse(data)))
+```
