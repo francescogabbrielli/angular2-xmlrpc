@@ -1,24 +1,48 @@
 # Angular2-Xmlrpc
 
+An Angular2+ service which provides XML-RPC communication methods.
+
 This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.6.
 
-## Code scaffolding
+This is actually a port from the AngularJS library [Angular-Xmlrpc](https://github.com/ITrust/angular-xmlrpc). **NOTE**: IE support has been dropped altogether.
 
-Run `ng generate component component-name --project angular2-xmlrpc` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project angular2-xmlrpc`.
-> Note: Don't forget to add `--project angular2-xmlrpc` or else it will be added to the default project in your `angular.json` file.
+Installation
+------------
 
-## Build
+    npm install angular2-xmlrpc --save
 
-Run `ng build angular2-xmlrpc` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Publishing
+How to use it ?
+---------------
 
-After building your library with `ng build angular2-xmlrpc`, go to the dist folder `cd dist/angular2-xmlrpc` and run `npm publish`.
+First of all, add in you application a dependency in your module:
 
-## Running unit tests
+    import { XmlrpcModule } from 'angular2-xmlrpc'
 
-Run `ng test angular2-xmlrpc` to execute the unit tests via [Karma](https://karma-runner.github.io).
+    @NgModule({
+      ...
+      imports: [
+        ...
+        XmlrpcModule
+      ],
+      ...
+    })
 
-## Further help
+You can use it in your application as any other service, and inject it in the constructor as usual.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+    import { XmlrpcService } from 'angular2-xmlrpc'
+
+    constructor(..., private xmlrpc:XmlrpcService, ...) {
+    }
+
+In order to pass parameters, you have to wrap them in an array:
+
+    let xmlrpcCall = this.xmlrpc.callMethod(
+      'http://localhost:8080/xmlrpc/endpoint',
+      'method-name',
+      ['string-param-1', 1, {obj-param-3: {val1: 1, val2: 'x'}}]
+    )
+
+Response from the server is an `Observable` and can be parsed to a JS object with `parseResponse` method:
+
+    xmlrpcCall.subscribe(data => console.log(this.xmlrpc.parseResponse(data)))
