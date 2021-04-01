@@ -53,7 +53,9 @@ xmlrpcCall.subscribe(data => console.log(this.xmlrpc.parseResponse(data)))
 ### Custom Headers
 to set custom headers:
 ``` ts
-this.xmlrpc.headers.set('Custom-Header', 'Value').
+this.xmlrpc.setHeaders({
+  'Custom-Header-1': 'Value-1',
+  'Custom-Header-2': ['Value-2', 'Value-3', 'Value-4']
+})
 ```
-- _Note 1_: the field `headers` is of type [HttpHeaders](https://angular.io/api/common/http/HttpHeaders).
-- _Note 2_: headers 'Content-Type' and 'Accept' cannot be set and will be overridden (for obvious reasons).
+- _Note_: this method returns an instance of [HttpHeaders](https://angular.io/api/common/http/HttpHeaders) that will be used in the Angular HTTP request
