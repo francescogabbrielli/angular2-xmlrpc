@@ -101,7 +101,7 @@ export class XmlrpcService {
     return value
   }
 
-  setHeaders(headers: { [name: string]: string | string[] }):void {
+  setHeaders(headers: { [name: string]: string | string[] }):HttpHeaders {
     this.headers = new HttpHeaders(headers)
     return this.headers
   }
