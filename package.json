@@ -1,10 +1,14 @@
 {
   "name": "angular2-xmlrpc",
   "description": "An Angular service which provides XML-RPC communication methods",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": "Francesco Gabbrielli",
   "license": "ISC",
   "homepage": "https://github.com/francescogabbrielli/angular2-xmlrpc",
+  "keywords": [
+    "xmlrpc",
+    "angular"
+  ],
   "peerDependencies": {
     "@angular/common": ">=9",
     "@angular/core": ">=9"

@@ -1,0 +1,11 @@
+v1.0.2
+------
+- Added custom headers field
+
+v1.0.1
+------
+- Basic unit testing
+
+v1.0.0
+------
+- Port from angular-xmlrpc AngularJS package (with no IE support)

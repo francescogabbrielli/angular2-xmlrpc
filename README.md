@@ -6,17 +6,17 @@ This library was generated with [Angular CLI](https://github.com/angular/angular
 
 This is actually a port from the AngularJS library [Angular-Xmlrpc](https://github.com/ITrust/angular-xmlrpc). **NOTE**: IE support has been dropped altogether.
 
-Installation
-------------
+## Installation
 
     npm install angular2-xmlrpc --save
 
 
-How to use it ?
----------------
+## How to use it ?
+
+### Configuration
 
 First of all, add a dependency in your module:
-``` typescript
+``` ts
 import { XmlrpcModule } from 'angular2-xmlrpc'
 
 @NgModule({
@@ -30,12 +30,13 @@ import { XmlrpcModule } from 'angular2-xmlrpc'
 export class AppModule { }
 ```
 You can use it in your application as any other service, and inject it in the constructor as usual.
-``` typescript
+``` ts
 import { XmlrpcService } from 'angular2-xmlrpc'
 
 constructor(..., private xmlrpc:XmlrpcService, ...) {
 }
 ```
+### XML-RPC Call
 There is only one main method to call an XML-RPC method. In order to pass parameters, you have to wrap them in an array:
 ``` typescript
 const xmlrpcCall = this.xmlrpc.callMethod(
@@ -45,6 +46,14 @@ const xmlrpcCall = this.xmlrpc.callMethod(
 )
 ```
 The XML response from the server is wrapped in an `Observable`, and can be parsed to a JS object with the `parseResponse` method:
-``` typescript
+``` ts
 xmlrpcCall.subscribe(data => console.log(this.xmlrpc.parseResponse(data)))
 ```
+
+### Custom Headers
+to set custom headers:
+``` ts
+this.xmlrpc.headers.set('Custom-Header', 'Value').
+```
+- _Note 1_: the field `headers` is of type [HttpHeaders](https://angular.io/api/common/http/HttpHeaders).
+- _Note 2_: headers 'Content-Type' and 'Accept' cannot be set and will be overridden (for obvious reasons).

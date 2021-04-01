@@ -13,14 +13,18 @@ import { Xml2js } from './xml2js'
 })
 export class XmlrpcService {
 
-  helper:Helper
-  js2xml:Js2xml
-  xml2js:Xml2js
+  private readonly helper:Helper
+  private readonly js2xml:Js2xml
+  private readonly xml2js:Xml2js
+
+  /** HTTP headers */
+  readonly headers:HttpHeaders
 
   constructor(private http:HttpClient) {
     this.helper = new Helper()
     this.js2xml = new Js2xml(this.helper)
     this.xml2js = new Xml2js(this.helper)
+    this.headers = new HttpHeaders()
   }
 
   /**
@@ -58,11 +62,10 @@ export class XmlrpcService {
    */
   callMethod(url:string, method:string, params:any[]):Observable<any> {
     const xmlstr = this.createCall(method, params)
+    this.headers.set('Content-Type', 'application/xml')
+    this.headers.set('Accept', 'text/html, application/xhtml+xml, */*')
     return this.http.post<any>(url, xmlstr, {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/xml',
-        'Accept': 'text/html, application/xhtml+xml, */*'
-      }),
+      headers: this.headers,
       observe: 'body',
       responseType: 'text' as 'json'
     })
