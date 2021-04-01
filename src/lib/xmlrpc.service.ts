@@ -18,7 +18,7 @@ export class XmlrpcService {
   private readonly xml2js:Xml2js
 
   /** HTTP headers */
-  readonly headers:HttpHeaders
+  private headers:HttpHeaders
 
   constructor(private http:HttpClient) {
     this.helper = new Helper()
@@ -62,8 +62,6 @@ export class XmlrpcService {
    */
   callMethod(url:string, method:string, params:any[]):Observable<any> {
     const xmlstr = this.createCall(method, params)
-    this.headers.set('Content-Type', 'application/xml')
-    this.headers.set('Accept', 'text/html, application/xhtml+xml, */*')
     return this.http.post<any>(url, xmlstr, {
       headers: this.headers,
       observe: 'body',
@@ -101,6 +99,11 @@ export class XmlrpcService {
     if (error)
       throw new Error(String(value))
     return value
+  }
+
+  setHeaders(headers: { [name: string]: string | string[] }):void {
+    this.headers = new HttpHeaders(headers)
+    return this.headers
   }
 
 }
