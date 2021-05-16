@@ -109,7 +109,8 @@ export class Js2xml {
    * Convert a javascript object to a valid xmlrpc value (as xml element).
    */
   convert(doc:Document, input:any):Node {
-    const type = input ? Object.prototype.toString.call(input).slice(8, -1).toLowerCase() : 'nil'
+    const type = input!==null ?
+        Object.prototype.toString.call(input).slice(8, -1).toLowerCase() : 'nil'
     let method = this.js2xmlMethod['string']
     try {
       method = this.js2xmlMethod[type]
