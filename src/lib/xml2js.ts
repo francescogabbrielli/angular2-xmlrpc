@@ -81,7 +81,7 @@ export class Xml2js {
       valueNodes = this.helper.selectNodes(input, './value');
     if (!valueNodes.length)
       return [];
-    return valueNodes.map(this.convert);
+    return valueNodes.map(this.convert, this);
   }
 
   /**
