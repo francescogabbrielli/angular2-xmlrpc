@@ -114,7 +114,7 @@ export class Xml2js {
   /**
    * Convert an xmlrpc value (as an xml tree) to a javascript object.
    */
-  convert(input:Node):Object|null {
+  convert(input:Node):Object|any[]|null {
       const elt = this.helper.selectSingleNode(input, './*')
       if (!elt)
           return null

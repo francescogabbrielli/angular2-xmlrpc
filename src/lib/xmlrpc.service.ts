@@ -77,10 +77,11 @@ export class XmlrpcService {
    *  - undefined: for empty response
    *  - null: for 'nil' value
    *  - Object: the value as an Object
+   *  - any[]: if the value was an Array
    *
    * @throws {@link Error} on fault response (or unexpected server error)
    */
-  parseResponse(response:string):Object|null|undefined {
+  parseResponse(response:string):Object|any[]|null|undefined {
     const doc = this.helper.loadXml(response)
     const rootNode = doc.firstChild
     if (!rootNode)
