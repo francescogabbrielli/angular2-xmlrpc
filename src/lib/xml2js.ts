@@ -81,7 +81,7 @@ export class Xml2js {
       valueNodes = this.helper.selectNodes(input, './value');
     if (!valueNodes.length)
       return [];
-    return valueNodes.map(this.convert);
+    return valueNodes.map(this.convert, this);
   }
 
   /**
@@ -114,7 +114,7 @@ export class Xml2js {
   /**
    * Convert an xmlrpc value (as an xml tree) to a javascript object.
    */
-  convert(input:Node):Object|null {
+  convert(input:Node):Object|any[]|null {
       const elt = this.helper.selectSingleNode(input, './*')
       if (!elt)
           return null
