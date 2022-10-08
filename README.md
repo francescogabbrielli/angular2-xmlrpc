@@ -59,3 +59,19 @@ this.xmlrpc.setHeaders({
 })
 ```
 - _Note_: this method returns an instance of [HttpHeaders](https://angular.io/api/common/http/HttpHeaders) that will be used in the Angular HTTP request
+
+
+## Build & Test (Developers)
+
+To build the project create an angular workspace (or use an existing one). For example:
+
+    ng new ng-workspace --create-application false
+
+Create the library project:
+
+    ng generate library angular2-xmlrpc
+
+fetch this repo from inside the project folder and buid it as library module from angular:
+
+    ng build angular2-xmlrpc 
+    ng test angular2-xmlrpc
