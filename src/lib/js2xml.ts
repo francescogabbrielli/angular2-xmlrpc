@@ -76,7 +76,7 @@ export class Js2xml {
     for (k in input) {
       elements.push(
         this.helper.createNode(doc, 'member',
-          [this.helper.createNode(doc, 'name', name), this.convert(doc, input[k])]))
+          [this.helper.createNode(doc, 'name', k), this.convert(doc, input[k])]))
     }
     return this.helper.createNode(doc, 'struct', elements)
   }
