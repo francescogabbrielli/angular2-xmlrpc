@@ -1,3 +1,7 @@
+v1.0.6
+------
+- Fix: property name is not added!
+
 v1.0.5
 ------
 - Fix: array responses are broken (for structs)
